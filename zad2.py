@@ -1,4 +1,6 @@
-a=[1,8,4,2,3,7,5,6,9]
+import tracemalloc,time
+
+
 
 def merge(a):
     if(len(a)>1):
@@ -29,7 +31,27 @@ def merge(a):
             j+=1
             c+=1
 
+    # answer validation
+    answer = ""
+    for i in range(len(a) - 1):
+        answer += str(a[i]) + " "
+    answer += str(a[-1])
 
+    # answer written
+    f = open('output.txt', 'w')
+    f.write(answer)
+    f.close()
 
+# start timecount and memory monitoring
+tracemalloc.start()
+start_t = time.perf_counter()
+# read input
+f = open('input.txt', 'r')
+length = f.readline()
+massive = f.readline()
+a = massive.split()
+
+# type preperation
+for i in range(0, len(a)):
+    a[i] = int(a[i])
 merge(a)
-print(a)
